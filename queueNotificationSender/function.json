@@ -1,0 +1,13 @@
+{
+  "bindings": [
+    {
+      "name": "message",
+      "type": "serviceBusTrigger",
+      "direction": "in",
+      "queueName": "notification-queue",
+      "connection": "SERVICE_BUS_CONNECTION",
+      "isBatched": false
+    }
+  ],
+  "scriptFile": "../dist/src/queueNotificationSender.js"
+}
