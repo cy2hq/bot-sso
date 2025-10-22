@@ -71,7 +71,7 @@ adapter.use(new ShowTypingMiddleware(100, 1500));
 // Create the bot that will handle incoming messages.
 export const bot = new TeamsBot(
   conversationState,
-  ""
+  process.env.OPENAI_API_KEY || ""
 );
 
 // Create HTTP server.
@@ -94,8 +94,8 @@ const server = expressApp.listen(
     notification: {
       enabled: true,
       store: new BlobStore(
-        "",
-        ""
+        process.env.STORAGE_CONN_STRING || "",
+        "scaconvos"
       ),
     },
   });
