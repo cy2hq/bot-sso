@@ -8,19 +8,38 @@ param webAppSKU string
 @maxLength(42)
 param botDisplayName string
 
+@secure()
+param serviceBusConnection string
+
 param serverfarmsName string = resourceBaseName
 param webAppName string = resourceBaseName
 param identityName string = resourceBaseName
+param storageAccountName string = 'notif${uniqueString(resourceGroup().id)}'
 param location string = resourceGroup().location
 param aadAppClientId string
 param aadAppTenantId string
 param aadAppOauthAuthorityHost string
+param storageContainerName string
+param storageConnectionString string
 @secure()
 param aadAppClientSecret string
 
 resource identity 'Microsoft.ManagedIdentity/userAssignedIdentities@2023-01-31' = {
   location: location
   name: identityName
+}
+
+// Storage Account for Azure Functions
+resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: storageAccountName
+  location: location
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    accessTier: 'Hot'
+  }
 }
 
 // Compute resources for your Web App
@@ -55,6 +74,18 @@ resource webApp 'Microsoft.Web/sites@2021-02-01' = {
         {
           name: 'RUNNING_ON_AZURE'
           value: '1'
+        }
+        {
+          name: 'SERVICE_BUS_CONNECTION'
+          value: serviceBusConnection
+        }
+        {
+          name: 'STORAGE_CONN_STRING'
+          value: storageConnectionString
+        }
+        {
+          name: 'STORAGE_CONT_NAME'
+          value: storageContainerName
         }
       ]
       ftpsState: 'FtpsOnly'

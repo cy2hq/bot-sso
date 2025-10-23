@@ -1,0 +1,38 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "version": "1.5",
+  "type": "AdaptiveCard",
+  "body": [
+    {
+      "type": "TextBlock",
+      "text": "👋 Welcome, ${userName}!",
+      "weight": "Bolder",
+      "size": "Large"
+    },
+    {
+      "type": "TextBlock",
+      "text": "We're excited to have you join us.",
+      "wrap": true
+    },
+    {
+      "type": "TextBlock",
+      "text": "Get started by exploring your dashboard and checking out the available resources.",
+      "wrap": true,
+      "spacing": "Medium"
+    },
+    {
+      "type": "Image",
+      "url": "${welcomeImageUrl}",
+      "size": "Medium",
+      "horizontalAlignment": "Center",
+      "spacing": "Medium"
+    }
+  ],
+  "actions": [
+    {
+      "type": "Action.OpenUrl",
+      "title": "Go to Dashboard",
+      "url": "${dashboardUrl}"
+    }
+  ]
+}

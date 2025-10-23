@@ -88,17 +88,19 @@ const server = expressApp.listen(
   }
 );
 
-  // Notification app
-  export const notificationApp = new ConversationBot({
-    adapterConfig: config,
-    notification: {
-      enabled: true,
-      store: new BlobStore(
-        process.env.STORAGE_CONN_STRING || "",
-        "scaconvos"
-      ),
-    },
-  });
+console.log(config);
+
+// Notification app
+export const notificationApp = new ConversationBot({
+  adapterConfig: config,
+  notification: {
+    enabled: true,
+    store: new BlobStore(
+      config.StorageConnectionString!,
+      config.StorageContainerName!
+    ),
+  },
+});
 
 // Listen for incoming requests.
 expressApp.post("/api/messages", async (req, res) => {

@@ -1,9 +1,9 @@
 {
-    "id": "def1c09f-13b2-493b-b6e7-08248d73e01e",
-    "appId": "fc179448-3469-4646-9927-f5ec4cc0eb63",
+    "id": "74f6e853-31d2-4dbb-9390-eb554db3bdea",
+    "appId": "daa03970-c6a6-4ab1-8258-d6597ba59d04",
     "displayName": "bot-sso-aad",
     "identifierUris": [
-        "api://botid-07d4f29c-16b6-42a2-bcab-8f7eb9b650cb"
+        "api://botid-e1b12319-85b7-44f1-9987-cb723936a3de"
     ],
     "signInAudience": "AzureADMyOrg",
     "api": {
@@ -12,7 +12,7 @@
             {
                 "adminConsentDescription": "Allows Teams to call the app's web APIs as the current user.",
                 "adminConsentDisplayName": "Teams can access app's web APIs",
-                "id": "9f207b34-5a5a-4b29-9bca-0f21198d27e0",
+                "id": "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7",
                 "isEnabled": true,
                 "type": "User",
                 "userConsentDescription": "Enable Teams to call this app's web APIs with the same rights that you have",
@@ -24,49 +24,49 @@
             {
                 "appId": "1fec8e78-bce4-4aaf-ab1b-5451cc387264",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "5e3ce6c0-2b1f-4285-8d4b-75ee78787346",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "d3590ed6-52b3-4102-aeff-aad2292ab01c",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "00000002-0000-0ff1-ce00-000000000000",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "bc59ab01-8403-45c6-8796-ac3ef710b3e3",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "0ec893e0-5785-4de6-99da-4ed124e5296c",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "4765445b-32c6-49b0-83e6-1d93765276ca",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             },
             {
                 "appId": "4345a7b9-9a63-4910-a426-35363201d503",
                 "delegatedPermissionIds": [
-                    "9f207b34-5a5a-4b29-9bca-0f21198d27e0"
+                    "a0df268c-43b8-466b-8a2c-bedfe0fb3ea7"
                 ]
             }
         ]
@@ -104,7 +104,7 @@
     ],
     "web": {
         "redirectUris": [
-            "https://rq4mngjd-3978.euw.devtunnels.ms/auth-end.html"
+            "https://9hnrc6wv-3978.euw.devtunnels.ms/auth-end.html"
         ],
         "implicitGrantSettings": {}
     },

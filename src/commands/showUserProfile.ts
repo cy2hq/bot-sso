@@ -30,9 +30,13 @@ export class ShowUserProfile implements SSOCommand {
     });
     const me = await graphClient.api("/me").get();
     if (me) {
-      await context.sendActivity(
-        `Token: ${(await oboCredential!.getToken("")!).token}`
-      )
+      const oboCredentialToken = (await oboCredential.getToken(""))?.token;
+      if (!oboCredentialToken) {
+        await context.sendActivity("Failed to get token from OnBehalfOfUserCredential.");
+        return;
+      }
+
+      await context.sendActivity(`Token: ${oboCredentialToken}`);
 
       const todoTask = {
         title: 'Test',
@@ -50,10 +54,7 @@ export class ShowUserProfile implements SSOCommand {
 
       console.log(taskLists)
 
-      await graphClient.api(`/me/todo/lists/${taskLists.value[0].id}/tasks`).post(todoTask)
-      await context.sendActivity(
-        `Token: ${(await oboCredential!.getToken("")!).token}`
-      )
+      await graphClient.api(`/me/todo/lists/${taskLists.value[0].id}/tasks`).post(todoTask);
 
       await context.sendActivity(
         `You're logged in as ${me.displayName} (${me.userPrincipalName})${

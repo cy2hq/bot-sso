@@ -1,0 +1,118 @@
+{
+  "$schema": "https://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "width": "auto",
+              "items": [
+                {
+                  "type": "Image",
+                  "url": "${teacherProfileUrl}",
+                  "size": "Medium",
+                  "style": "Person",
+                  "altText": "Teacher's Profile Photo"
+                }
+              ]
+            },
+            {
+              "type": "Column",
+              "width": "stretch",
+              "items": [
+                {
+                  "type": "TextBlock",
+                  "text": "${assignmentTitle}",
+                  "weight": "Bolder",
+                  "size": "Large",
+                  "spacing": "Medium"
+                },
+                {
+                  "type": "TextBlock",
+                  "text": "Feedback from: ${teacherName}",
+                  "isSubtle": true,
+                  "wrap": true
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "TextBlock",
+          "text": "${title}",
+          "weight": "Bolder",
+          "wrap": true,
+          "spacing": "Medium"
+        },
+        {
+          "type": "TextBlock",
+          "text": "${description}",
+          "wrap": true
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.ShowCard",
+              "title": "Reply",
+              "card": {
+                "type": "AdaptiveCard",
+                "body": [
+                  {
+                    "type": "TextBlock",
+                    "text": "Your Response:",
+                    "weight": "Bolder",
+                    "wrap": true,
+                    "spacing": "Medium"
+                  },
+                  {
+                    "type": "Input.Text",
+                    "id": "studentFeedback",
+                    "placeholder": "Type your feedback here...",
+                    "isMultiline": true
+                  }
+                ],
+                "actions": [
+                  {
+                    "type": "Action.Submit",
+                    "title": "Reply",
+                    "data": {
+                      "action": "sendResponse"
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "type": "Action.OpenUrl",
+              "title": "Open Assignment",
+              "url": "${assignmentUrl}"
+            }
+          ]
+        },
+        {
+          "type": "Container",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "[Need Help?](${helpLinkUrl})",
+              "weight": "Lighter",
+              "size": "Small",
+              "horizontalAlignment": "Right",
+              "color": "Accent",
+              "isSubtle": true,
+              "wrap": true,
+              "spacing": "Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

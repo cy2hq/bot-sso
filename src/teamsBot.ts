@@ -9,7 +9,7 @@ import {
   ActivityHandler,
 } from "botbuilder";
 import OpenAI from "openai";
-import { SSODialog } from "./ssoDialog";
+import { SSODialog } from "./env/ssoDialog";
 import { SSOCommandMap } from "./commands/SSOCommandMap";
 
 export interface ChatMessage {
@@ -82,34 +82,34 @@ export class TeamsBot extends ActivityHandler {
   }
 
   private async onMessageHandler(context: TurnContext, next: () => Promise<void>) {
-      console.log("Running with Message Activity.");
+    console.log("Running with Message Activity.");
 
-      let txt = context.activity.text;
-      // remove the mention of this bot
-      const removedMentionText = TurnContext.removeRecipientMention(
-        context.activity
-      );
-      if (removedMentionText) {
-        // Remove the line break
-        txt = removedMentionText.toLowerCase().replace(/\n|\r/g, "").trim();
-      }
+    let txt = context.activity.text;
+    // remove the mention of this bot
+    const removedMentionText = TurnContext.removeRecipientMention(
+      context.activity
+    );
+    if (removedMentionText) {
+      // Remove the line break
+      txt = removedMentionText.toLowerCase().replace(/\n|\r/g, "").trim();
+    }
 
-      // Trigger command by IM text
-      if (SSOCommandMap.get(txt)) {
-        await this.dialog.run(context, this.dialogState);
-      } else {
-        const history = await this.historyAccessor.get(context, []);
-    history.push({ from: "user", message: txt });
+    // Trigger command by IM text
+    if (SSOCommandMap.get(txt)) {
+      await this.dialog.run(context, this.dialogState);
+    } else {
+      const history = await this.historyAccessor.get(context, []);
+      history.push({ from: "user", message: txt });
 
-    let botReply = "Sorry, I hit an error.";
-    try {
-      // 2) call OpenAI Responses API with vector store
-      const resp = await this.openai.responses.create({
-        model: 'gpt-4.1-nano',
-        max_output_tokens: 1000,
-        reasoning: null,
-        temperature: 0.1,
-        instructions: `You are a helpful AI assistant. Use the following pieces of context to answer the question of the user. Act as if you are a person not an AI robot. Please keep your responses mostly concise and to the point.
+      let botReply = "Sorry, I hit an error.";
+      try {
+        // 2) call OpenAI Responses API with vector store
+        const resp = await this.openai.responses.create({
+          model: 'gpt-4.1-nano',
+          max_output_tokens: 1000,
+          reasoning: null,
+          temperature: 0.1,
+          instructions: `You are a helpful AI assistant. Use the following pieces of context to answer the question of the user. Act as if you are a person not an AI robot. Please keep your responses mostly concise and to the point.
 
         If the user's question cannot be answered using the provided context, politely respond with the following text in markdown:
         Sorry, I can't answer that question, but my colleagues can!
@@ -133,34 +133,34 @@ export class TeamsBot extends ActivityHandler {
 
         Else, return the helpful answer in markdown:
         `,
-        input: [
-          ...history.map(h => `${h.from === 'user' ? 'User:' : 'Assistant:'} ${h.message}`),
-          `User: ${txt}`
-        ].join('\n'),
-        tools: [
-          {
-            type: 'file_search',
-            vector_store_ids: [this.vectorStoreId],
-            max_num_results: 3,
-          },
-        ],
-      });
+          input: [
+            ...history.map(h => `${h.from === 'user' ? 'User:' : 'Assistant:'} ${h.message}`),
+            `User: ${txt}`
+          ].join('\n'),
+          tools: [
+            {
+              type: 'file_search',
+              vector_store_ids: [this.vectorStoreId],
+              max_num_results: 3,
+            },
+          ],
+        });
 
-      botReply = resp.output_text ?? "I couldn't generate a response.";
-    } catch (e) {
-      console.error("OpenAI RAG call failed:", e);
-    }
-
-    // 3) update history + save state
-    history.push({ from: "bot", message: botReply });
-    await this.historyAccessor.set(context, history);
-    await this.conversationState.saveChanges(context);
-
-    // 4) reply in Teams
-    await context.sendActivity(botReply);
+        botReply = resp.output_text ?? "I couldn't generate a response.";
+      } catch (e) {
+        console.error("OpenAI RAG call failed:", e);
       }
-      // By calling next() you ensure that the next BotHandler is run.
-      await next();
+
+      // 3) update history + save state
+      history.push({ from: "bot", message: botReply });
+      await this.historyAccessor.set(context, history);
+      await this.conversationState.saveChanges(context);
+
+      // 4) reply in Teams
+      await context.sendActivity(botReply);
+    }
+    // By calling next() you ensure that the next BotHandler is run.
+    await next();
   }
 
   async run(context: TurnContext) {

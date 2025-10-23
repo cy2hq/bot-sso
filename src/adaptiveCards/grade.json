@@ -1,0 +1,170 @@
+{
+  "$schema": "http://adaptivecards.io/schemas/adaptive-card.json",
+  "type": "AdaptiveCard",
+  "version": "1.5",
+  "body": [
+    {
+      "type": "ColumnSet",
+      "columns": [
+        {
+          "type": "Column",
+          "width": "auto",
+          "items": [
+            {
+              "type": "Image",
+              "url": "${image}",
+              "size": "medium",
+              "style": "Person",
+              "altText": "Image"
+            }
+          ]
+        },
+        {
+          "type": "Column",
+          "width": "stretch",
+          "items": [
+            {
+              "type": "TextBlock",
+              "text": "${title}",
+              "weight": "Bolder",
+              "size": "extraLarge",
+              "spacing": "Medium"
+            },
+            {
+              "type": "TextBlock",
+              "text": "${subtitle}",
+              "spacing": "none",
+              "isSubtle": true,
+              "wrap": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "gradeHidden",
+      "isVisible": true,
+      "items": [
+          {
+            "type": "TextBlock",
+            "text": "${hiddenText}",
+            "wrap": true,
+            "spacing": "Medium"
+          },
+          {
+            "type": "ActionSet",
+            "actions": [
+              {
+                "type": "Action.ToggleVisibility",
+                "title": "${showContentButtonText}",
+                "targetElements": [
+                  "gradeHidden",
+                  "gradeDetail"
+                ]
+              }
+            ]
+          }
+      ]
+    },
+    {
+      "type": "Container",
+      "id": "gradeDetail",
+      "isVisible": false,
+      "items": [
+        {
+          "type": "ColumnSet",
+          "columns": [
+              {
+                  "type": "Column",
+                  "width": "Automatic",
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "weight": "bolder",
+                          "text": "${subjectText0}"
+                      }
+                  ]
+              },
+              {
+                  "type": "Column",
+                  "items": [
+                      {
+                          "type": "TextBlock",
+                          "weight": "bolder",
+                          "text": "${subjectText1}"
+                      }
+                  ]
+              }
+          ]
+        },
+        {
+          "type": "ColumnSet",
+          "columns": [
+            {
+              "type": "Column",
+              "items": [
+                  {
+                      "type": "TextBlock",
+                      "text": "${messageText0}",
+                      "weight": "bolder",
+                      "wrap": true
+                  },
+                  {
+                      "type": "TextBlock",
+                      "text": "*${messageText1}*",
+                      "spacing": "none",
+                      "wrap": true
+                  }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.OpenUrl",
+              "title": "${actionButtonText0}",
+              "url": "https://teams.microsoft.com/l/chat/0/0?users=teacher@example.com"
+            },
+            {
+              "type": "Action.OpenUrl",
+              "title": "${actionButtonText1}",
+              "url": "https://outlook.office.com/calendar"
+            }
+          ]
+        },
+        {
+          "type": "ActionSet",
+          "actions": [
+            {
+              "type": "Action.ToggleVisibility",
+              "title": "${hideContentButtonText}",
+              "targetElements": [
+                "gradeDetail",
+                "gradeHidden"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "Container",
+      "items": [
+        {
+          "type": "TextBlock",
+          "text": "[Need Help?](${helpLinkUrl})",
+          "weight": "Lighter",
+          "size": "Small",
+          "horizontalAlignment": "Right",
+          "color": "Accent",
+          "isSubtle": true,
+          "wrap": true,
+          "spacing": "Medium"
+        }
+      ]
+    }
+  ]
+}

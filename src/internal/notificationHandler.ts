@@ -7,7 +7,11 @@ const httpTrigger: AzureFunction = async function (
   req: HttpRequest
 ): Promise<any> {
   const res = new ResponseWrapper(context.res);
-  await notificationApp.requestHandler(req, res);
+  const adaptedReq = {
+    ...req,
+    method: req.method ?? undefined,
+  } as any;
+  await notificationApp.requestHandler(adaptedReq, res);
   return res.body;
 };
 

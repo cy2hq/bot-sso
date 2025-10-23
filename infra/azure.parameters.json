@@ -11,6 +11,9 @@
     "botDisplayName": {
       "value": "bot-sso"
     },
+    "serviceBusConnection": {
+      "value": "${{SERVICE_BUS_CONNECTION}}"
+    },
     "aadAppClientId": {
       "value": "${{AAD_APP_CLIENT_ID}}"
     },

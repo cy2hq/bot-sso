@@ -1,14 +1,29 @@
 {
   "compilerOptions": {
-    "declaration": true,
+    // Basic Options
     "target": "es2017",
     "module": "commonjs",
-    "outDir": "./lib",
+    "outDir": "./dist",
     "rootDir": "./",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    // Type Safety
+    "noImplicitAny": false,
+    "strictNullChecks": false,
+    "strictFunctionTypes": true,
+    "strictBindCallApply": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    // Module Resolution and Output
+    "declaration": true,
     "sourceMap": true,
     "incremental": true,
-    "tsBuildInfoFile": "./lib/.tsbuildinfo",
     "resolveJsonModule": true,
     "esModuleInterop": true,
-  }
+    // Decorators (Required for TypeORM/NestJS/etc.)
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true
+  },
+  "include": [
+    "src"
+  ],
 }
