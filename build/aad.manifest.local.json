@@ -104,7 +104,7 @@
     ],
     "web": {
         "redirectUris": [
-            "https://rq4mngjd-3978.euw.devtunnels.ms/auth-end.html"
+            "https://t6s4rdcb-3978.euw.devtunnels.ms/auth-end.html"
         ],
         "implicitGrantSettings": {}
     },
