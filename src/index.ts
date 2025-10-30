@@ -56,6 +56,12 @@ interface MappedCommand {
 }
 const CommandHandlerMap = new Map<string, MappedCommand>();
 
+export function listCommands(): { name: string; sso: boolean }[] {
+  return Array.from(CommandHandlerMap.values())
+    .map(({ instance }) => ({ name: instance.name, sso: instance.sso }))
+    .sort((a, b) => a.name.localeCompare(b.name));
+}
+
 async function loadCommands() {
   console.info('Starting dynamic command loading...');
   const commandsDir = path.join(__dirname, 'commands');
@@ -164,7 +170,7 @@ const app = new ApplicationBuilder()
   .withAuthentication(adapter, {
     settings: {
       graph: {
-        scopes: ['User.Read', 'Tasks.ReadWrite'],
+        scopes: ['User.Read', 'Tasks.ReadWrite', 'Calendars.Read', 'Presence.ReadWrite', 'Files.Read'],
         msalConfig: {
           auth: {
             clientId: config.clientId,

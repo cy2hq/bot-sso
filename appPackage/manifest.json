@@ -14,47 +14,67 @@
         "outline": "outline.png"
     },
     "name": {
-        "short": "sso-command-bot${{APP_NAME_SUFFIX}}",
-        "full": "full name for sso-command-bot"
+        "short": "SSO Command Bot${{APP_NAME_SUFFIX}}",
+        "full": "Microsoft 365 SSO Command Bot"
     },
     "description": {
-        "short": "short description for sso-command-bot",
-        "full": "full description for sso-command-bot"
+        "short": "Teams bot that runs Microsoft 365 commands with SSO.",
+        "full": "A Teams personal scope bot that uses Microsoft 365 single sign-on to execute helpful commands such as viewing your profile, upcoming meetings, recent files, and managing To Do tasks."
     },
     "accentColor": "#FFFFFF",
     "bots": [
         {
             "botId": "${{BOT_ID}}",
             "scopes": [
-                "personal",
-                "team",
-                "groupChat"
+                "personal"
             ],
             "supportsFiles": false,
             "isNotificationOnly": false,
             "commandLists": [
                 {
                     "scopes": [
-                        "personal",
-                        "team",
-                        "groupChat"
+                        "personal"
                     ],
                     "commands": [
                         {
-                            "title": "helloWorld",
-                            "description": "A helloworld command to send a welcome message"
+                            "title": "helloworld",
+                            "description": "Send a welcome Adaptive Card."
                         },
                         {
                             "title": "profile",
-                            "description": "Show user profile"
+                            "description": "Show your Microsoft 365 profile information."
+                        },
+                        {
+                            "title": "whoami",
+                            "description": "Summarize your profile and manager details."
+                        },
+                        {
+                            "title": "nextmeeting",
+                            "description": "Display the next meeting scheduled on your calendar."
                         },
                         {
                             "title": "addevent",
-                            "description": "Add event to calendar"
+                            "description": "Add an example event to your calendar."
+                        },
+                        {
+                            "title": "setstatus",
+                            "description": "Update your Teams presence (e.g. busy, away)."
                         },
                         {
                             "title": "addtodo",
-                            "description": "Show user todo"
+                            "description": "Create a new Microsoft To Do task."
+                        },
+                        {
+                            "title": "tasksdue",
+                            "description": "List up to three tasks due today."
+                        },
+                        {
+                            "title": "recentfiles",
+                            "description": "Show the three most recently used OneDrive files."
+                        },
+                        {
+                            "title": "help",
+                            "description": "List all available commands."
                         }
                     ]
                 }
