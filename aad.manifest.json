@@ -94,6 +94,10 @@
                 {
                     "id": "User.Read",
                     "type": "Scope"
+                },
+                {
+                    "id": "Tasks.ReadWrite",
+                    "type": "Scope"
                 }
             ]
         }

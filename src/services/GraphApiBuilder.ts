@@ -4,12 +4,9 @@ export class GraphApiBuilder {
     protected readonly graphClient: Client;
 
     constructor(ssoToken: string) {
-        let token = '';
-
         // Initialize the Microsoft Graph Client
         this.graphClient = Client.init({
             authProvider: (done) => {
-                token = ssoToken;
                 done(null, ssoToken);
             }
         });

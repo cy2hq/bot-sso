@@ -46,11 +46,15 @@
                         },
                         {
                             "title": "profile",
-                            "description": "Show user profile using Single Sign On feature"
+                            "description": "Show user profile"
                         },
                         {
-                            "title": "photo",
-                            "description": "Show user photo using Single Sign On feature"
+                            "title": "addevent",
+                            "description": "Add event to calendar"
+                        },
+                        {
+                            "title": "addtodo",
+                            "description": "Show user todo"
                         }
                     ]
                 }
